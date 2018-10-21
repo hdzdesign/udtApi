@@ -1,0 +1,184 @@
+swagger: '3.0'
+info:
+  version: '0.0.0.1SNAPSHOT'
+  title: 'UDTEQUIPO'
+  description: 'Api para jugadores'
+paths:
+  'equipos':
+    get:
+      summary: Get all teams
+      description: Get all teams from database
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Equipos'
+    post:
+      summary: Create a new team
+      description: add a new team to database
+      parameters:
+      - in: body
+        name: Equipo
+        description: Equipo object
+        required: true
+        schema:
+          $ref: '#/definitions/Equipo'
+      responses:
+        200:
+          description: OK
+
+  'equipos/{equiposId}':
+    get:
+      summary: Get team information
+      description: Get team information
+      parameters:
+      - name: equiposId
+        in: path
+        description: equipos id
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Equipo'
+    put:
+      summary: Update team information
+      description: Update team information
+      parameters:
+      - name: equiposId
+        in: path
+        description: equipos id
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Equipo'
+    delete:
+      summary: Delete equipo
+      description: Delete equipo information
+      parameters:
+        name: equiposId
+        in: path
+        required: true
+        description: Parking id
+        type: string
+      responses:
+        200:
+          description: OK
+  'equipos/{equiposId}/jugadores':
+    get:
+      summary: Get all players from team
+      description: Get all players from team
+      parameters:
+      - name: equiposId
+        in: path
+        description: Equipos id
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Jugadores'
+    post:
+      summary: Add player to team
+      description: Add player to team
+      parameters:
+      - name: jugadorId
+        in: path
+        description: Jugador ID
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Jugador'
+
+  'equipos/{equipoId}/equipos/{jugadorId}':
+    get:
+      summary: Get player information
+      description: Get jugador informacion
+      parameters:
+      - name: equipoId
+        in: path
+        description: Jugador ID
+        required: true
+        type: string
+      - name: jugadorId
+        in: path
+        description: Jugador ID
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Jugador'
+
+definitions:
+
+  Equipo:
+    type: object
+    properties:
+      id:
+        type: number
+      name:
+        type: string
+      location:
+        type: string
+      dateCreated:
+        type: string
+        format: date
+    example:
+      dateCreated: 2019-01-01
+      name: name
+      location: location
+      id: 0.0000000001123124151251258880
+  Equipos:
+    type: object
+    properties:
+      Equipos:
+        type: array
+        items:
+          $ref: '#/definitions/Equipo'
+    example:
+      Equipos:
+      - dateCreated: 2019-01-01
+        name: name
+        location: location
+        id: 0.0000000000000000012345678
+  Jugador:
+    type: object
+    properties:
+      id:
+        type: number
+      nombre:
+        type: string
+      email:
+        type: string
+      dni:
+        type: string
+      apellido:
+        type: string
+      telefono:
+        type: string
+    example:
+      id: 0.0000000333455578734
+      nombre: nombre
+      email: email
+      dni: 77777777D
+      apellido: apellido
+      telefono: 660574389
+
+  Jugadores:
+    type: object
+    properties:
+      Jugadores:
+        type: array
+        items:
+          $ref: '#/definitions/Jugador'
