@@ -1,4 +1,4 @@
-package com.udt.apiudt.configure;
+package com.udt.apiudt.controller;
 
 import com.example.generated.api.EquiposApi;
 import com.example.generated.model.Equipo;
@@ -7,7 +7,7 @@ import com.example.generated.model.Jugador;
 import com.example.generated.model.Jugadores;
 import org.springframework.http.ResponseEntity;
 
-public class EquipoImpl implements EquiposApi {
+public class EquipoController implements EquiposApi {
     @Override
     public ResponseEntity<Jugador> equiposEquipoIdEquiposJugadorIdGet(String equipoId, String jugadorId) {
         return null;
